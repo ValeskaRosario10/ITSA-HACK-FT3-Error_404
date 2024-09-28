@@ -1,0 +1,111 @@
+.group-view {
+    padding: 20px;
+    background-color: rgb(255, 255, 255); /* Use the same background color as the group output */
+    border-radius: 5px; /* Match border radius */
+}
+
+.group-view h2 {
+    font-size: 28px;
+    color: #5c6bc0; /* Primary color for headers */
+}
+
+.group-view p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.expenses-container {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between expense cards */
+}
+
+.expense-button {
+    padding: 12px 24px; /* Larger button */
+    margin: 5px;
+    border: none;
+    background-color: #5c6bc0; /* Button color matching GroupTab */
+    color: white; /* Text color */
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px; /* Larger font size */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+.expense-button:hover {
+    background-color: #7b1fa2; /* Hover color */
+}
+
+.expense-card {
+    background-color: #ffffff; /* Same white background */
+    border: 1px solid #ccc; /* Match border style */
+    border-radius: 20px; /* Match rounded corners */
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.expense-card h4 {
+    margin: 0;
+    color: #5c6bc0; /* Use the same color as GroupTab headers */
+}
+
+.expense-card p {
+    margin: 5px 0;
+}
+
+/* Add Expense Tab Styles */
+.add-expense-tab {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center horizontally */
+    margin-top: 20px; /* Space above the tab */
+    padding: 15px;
+    border: 1px solid #ddd; /* Border around the tab */
+    border-radius: 5px; /* Match rounded corners */
+    background-color: #f9f9f9; /* Background color */
+    width: 100%; /* Full width for the tab */
+    max-width: 600px; /* Limit the max width */
+}
+
+.add-expense-tab h3 {
+    text-align: center; /* Center the title */
+    color: #5c6bc0; /* Match header color */
+}
+
+.add-expense-tab form {
+    width: 100%; /* Full width for the form */
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    align-items: center; /* Center form elements */
+}
+
+.add-expense-tab label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left; /* Align label text to the left */
+    width: 100%; /* Full width for labels */
+}
+
+.add-expense-tab input {
+    padding: 8px;
+    margin-bottom: 10px; /* Space below input */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: calc(100% - 20px); /* Adjust width with padding */
+}
+
+.add-expense-tab button {
+    background-color: #5c6bc0; /* Button color matching GroupTab */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px; /* Larger font size for consistency */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+.add-expense-tab button:hover {
+    background-color: #7b1fa2; /* Hover color */
+}

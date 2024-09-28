@@ -1,4 +1,11 @@
 /* GroupTab.css */
+.group-output {
+  background-color: rgb(255, 255, 255); /* Semi-transparent white */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 .group-tab {
     padding: 20px;
   }
@@ -26,16 +33,61 @@
   }
   
   .modal {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 100%;
+    width: 400px;
+    padding: 20px;
+    z-index: 1000;
+    overflow: auto;
+  }
+  
+  .tab-container {
+    display: flex;
+    justify-content: space-around; /* Space out tabs */
+    margin-bottom: 20px; /* Space below tabs */
+  }
+  
+  .tab {
+    background-color: #f1f1f1; /* Default tab background */
+    border: none;
+    padding: 10px 20px; /* Padding for tabs */
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .tab:hover {
+    background-color: #ddd; /* Background color on hover */
+  }
+  
+  .active {
+    background-color: #ccc; /* Background for active tab */
+    font-weight: bold; /* Bold font for active tab */
+  }
+  
+  .modal h2 {
+    font-size: 24px;
+  }
+  
+  .modal label {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .modal input,
+  .modal select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .modal button {
+    padding: 10px 15px;
   }
   
   .overlay {
@@ -65,7 +117,7 @@
   }
   
   .group-card {
-    background: #e8c9ff;
+    background: #ffffff;
     border: 1px solid #ccc; /* Add a border for visibility */
     padding: 15px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
@@ -96,3 +148,5 @@
     border-radius: 10px;
     margin: 5px 0;
   }
+
+  
