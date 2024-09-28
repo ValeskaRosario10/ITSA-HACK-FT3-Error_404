@@ -42,7 +42,7 @@ function Login() {
     <div className="login-page">
         <div>
       <img
-        src="media/LoginImage.svg" // Replace with your image URL or import
+        src="media/LoginImage_1.svg" // Replace with your image URL or import
         alt="Login Illustration"
         className="login-image"
       /> <br/>
