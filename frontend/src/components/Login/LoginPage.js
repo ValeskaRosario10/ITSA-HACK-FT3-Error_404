@@ -2,12 +2,13 @@ import React from 'react';
 import './Login.css';
 import Login from './Login';
 
-function LoginPage() {
+
+const LoginPage = ({ setIsAuthenticated }) => {
     return (
-        <div >
-            <Login />
+        <div>
+            <Login setIsAuthenticated={setIsAuthenticated} />
         </div>
-      );
-}
+    );
+};
 
 export default LoginPage;
