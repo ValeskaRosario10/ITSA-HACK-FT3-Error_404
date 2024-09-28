@@ -1,0 +1,98 @@
+/* GroupTab.css */
+.group-tab {
+    padding: 20px;
+  }
+  
+  .group-tab button {
+    padding: 12px 24px; /* Larger button */
+    margin: 5px;
+    border: none;
+    background-color: #5c6bc0; /* Button color */
+    color: white; /* Text color */
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px; /* Larger font size */
+    transition: background-color 0.3s; /* Transition effect */
+  }
+  
+  .group-tab button:hover {
+    background-color: #7b1fa2; /* Hover color */
+  }
+  
+  .group-tab .right-button-container {
+    display: flex;
+    justify-content: flex-end; /* Aligns the button to the right */
+    margin-top: 20px; /* Add some space above the button */
+  }
+  
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .groups-container {
+    display: flex;
+    flex-wrap: wrap; /* Wrap items to the next line if necessary */
+    gap: 20px; /* Space between group cards */
+  }
+  
+  .group-card {
+    background: #e8c9ff;
+    border: 1px solid #ccc; /* Add a border for visibility */
+    padding: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    width: 300px; /* Set a fixed width */
+    min-height: 150px; /* Set a minimum height for uniformity */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    overflow: hidden; /* Hide overflow */
+    border-radius: 20px;
+  }
+  
+  /* Ensure consistent item spacing */
+  .group-card h3, 
+  .group-card p {
+    margin: 5px 0; /* Set consistent margins */
+  }
+  
+  
+  .group-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+  }
+  
+  .group-card ul li {
+    background-color: #ffffff; /* Lighter purple for list items */
+    padding: 5px;
+    border-radius: 10px;
+    margin: 5px 0;
+  }
