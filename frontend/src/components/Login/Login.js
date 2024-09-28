@@ -1,54 +1,95 @@
 import React, { useState } from 'react';
 import { validateForm } from './Validation'; // Import the validation function
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate();
   const [rightPanelActive, setRightPanelActive] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   const [errors, setErrors] = useState({}); // State to hold errors
   const [isAuthenticated, setIsAuthenticated] = useState(false); // State to check authentication status
-
-  const handleSignUp = (e) => {
+  
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    const validationErrors = validateForm(name, email, password);
+    const validationErrors = validateForm(username, email, password);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-
-    // Simulate a successful sign-up
-    console.log('User signed up:', { name, email, password });
-    setIsAuthenticated(true);
-    setErrors({}); // Clear errors on successful sign-up
+  
+    try {
+      const response = await fetch('http://localhost:5000/api/users/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password }), // Include email in signup
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        console.log('User signed up:', data);
+        localStorage.setItem('token', data.token); // Store the JWT in localStorage
+        setIsAuthenticated(true);
+        setErrors({}); // Clear errors on successful sign-up
+        console.log('Navigating to dashboard...');
+        navigate('/dashboard'); // Redirect to dashboard after successful signup
+      } else {
+        setErrors({ server: data.message }); // Set server error message
+      }
+    } catch (error) {
+      console.error('Error signing up:', error);
+      setErrors({ server: 'An error occurred. Please try again later.' });
+    }
   };
-
-  const handleSignIn = (e) => {
+  
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    const validationErrors = validateForm('', email, password); // Name is not needed for sign-in
+    console.log('Sign In button clicked');
+    const validationErrors = validateForm('', email, password); // Username is not needed for sign-in
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-
-    // Simulate successful sign-in (for example purposes)
-    console.log('User signed in:', { email, password });
-    setIsAuthenticated(true);
-    setErrors({}); // Clear errors on successful sign-in
+  
+    try {
+      const response = await fetch('http://localhost:5000/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }), // Include email in login
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        console.log('User signed in:', data);
+        localStorage.setItem('token', data.token); // Store the JWT in localStorage
+        setIsAuthenticated(true); // Update authentication state
+        navigate('/dashboard'); // Redirect to dashboard
+      } else {
+        setErrors({ server: data.message }); // Set server error message
+      }
+    } catch (error) {
+      console.error('Error signing in:', error);
+      setErrors({ server: 'An error occurred. Please try again later.' });
+    }
   };
-
+  
   return (
     <div className="login-page">
-        <div>
-      <img
-        src="media/LoginImage_1.svg" // Replace with your image URL or import
-        alt="Login Illustration"
-        className="login-image"
-      /> <br/>
-      <h4 style={{color:'white'}} className="login-image">Manage your expenses with ease. Split bills, track payments, and stay organized—all in one place.
-      </h4>
+      <div>
+        <img
+          src="media/LoginImage_1.svg" // Replace with your image URL or import
+          alt="Login Illustration"
+          className="login-image"
+        /> <br/>
+        <h4 style={{color:'white'}} className="login-image">Manage your expenses with ease. Split bills, track payments, and stay organized—all in one place.</h4>
       </div>
+
       {isAuthenticated ? (
         <h2>Welcome! You are successfully logged in.</h2>
       ) : (
@@ -59,8 +100,8 @@ function Login() {
               <h1>Create Account</h1>
               <input
                 type="text"
-                placeholder="Name"
-                value={name}
+                placeholder="Username"
+                value={username}
                 onChange={(e) => setName(e.target.value)}
                 required
               />
@@ -106,7 +147,6 @@ function Login() {
                 required
               />
               {errors.password && <p className="error">{errors.password}</p>}
-              <a href="#">Forgot your password?</a>
               <button type="submit">Sign In</button>
               {errors.server && <p className="error">{errors.server}</p>} {/* Server error display */}
             </form>
@@ -116,7 +156,7 @@ function Login() {
           <div className="overlay-container">
             <div className="overlay">
               <div className="overlay-panel overlay-left">
-                <h1>Welcome Back  to BillSplit!</h1>
+                <h1>Welcome Back to BillSplit!</h1>
                 <p>To keep connected with us please login with your personal info</p>
                 <button className="ghost" id="signIn" onClick={() => setRightPanelActive(false)}>Sign In</button>
               </div>
